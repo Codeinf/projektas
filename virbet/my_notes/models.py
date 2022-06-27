@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from tinymce.models import HTMLField
 
 
 class NoteCategory(models.Model):
@@ -34,7 +35,7 @@ class Note(models.Model):
         blank=True
     )
     title = models.CharField(max_length=200)
-    note_content = models.TextField()
+    note_content = HTMLField()
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
