@@ -6,9 +6,10 @@ from .models import Note, NoteCategory
 class NoteForm(forms.ModelForm):
     class Meta:
         model = Note
-        fields = ('note_content', 'note_category', 'title', 'user',)
+
+        fields = ('note_category', 'title', 'note_content', 'user',)
         widgets = {
             'content': TinyMCE(),
-            'category': forms.HiddenInput(),
+            # 'category': forms.HiddenInput(),
             'user': forms.HiddenInput(),
         }

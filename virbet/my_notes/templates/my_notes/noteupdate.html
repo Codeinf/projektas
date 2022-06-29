@@ -2,6 +2,6 @@
 <form method="post" action="">
     {% csrf_token %}
     {{ form | crispy }}
-    <input type="submit" value="create">
+    <input type="submit" value="save">
     <a href="{% url 'notes' %}">back</a>
 </form>

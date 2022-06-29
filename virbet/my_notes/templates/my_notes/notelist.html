@@ -1,0 +1,25 @@
+<div >
+    <div>
+        <h3>{{request.user|title}}</h3>
+    </div class="header-bar">
+    {% if request.user.is_authenticated %}
+    <a href="{% url 'logout' %}">Logout</a> {% else %}
+    <a href="{% url 'login' %}">Login</a> {% endif %}
+</div>
+<h2>Notes</h2>
+<form method="GET" style="display: flex;">
+    <input type='text' name='search' placeholder="Search note" value="{{search}}">
+    <input class="button" type="submit" value='Search'>
+</form>
+<div>
+    {%for note in notes%}
+    <div>
+        <a href="{% url 'note' note.id %}"> {{note.title}}</a>
+        <a href="{% url 'note-update' note.id %}">edit</a>
+        <a href="{% url 'note-delete' note.id %}">delete</a>
+    </div>
+    {%empty%}
+    <h3>no notes</h3>
+    {%endfor%}
+    <a href="{% url 'note-create' %}"> add note</a>
+</div>
