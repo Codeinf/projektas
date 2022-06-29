@@ -39,7 +39,6 @@ class RegisterView(generic.FormView):
         return super(RegisterView, self).get(*args, **kwargs)
 
 
-
 class NoteCreateView(LoginRequiredMixin, generic.CreateView):
     model = Note
     success_url = reverse_lazy('notes')
