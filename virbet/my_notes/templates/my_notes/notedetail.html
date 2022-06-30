@@ -1,5 +1,17 @@
-<h1>{{note}}</h1>
+{% extends 'base.html' %}
+{% block body%}
+
+<h1>{{note.title}}</h1>
 <div> 
     <p>{{note.note_content}}</p>
     <a href="{% url 'notes' %}">back</a>
+    <div>
+        <button onclick=window.location.href="{% url 'note-update' note.id %}";>
+            edit
+        </button>
+        <button onclick=window.location.href="{% url 'note-delete' note.id %}";>
+            delete
+        </button>
+    </div>
 </div>
+{% endblock body%}

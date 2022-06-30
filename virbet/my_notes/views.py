@@ -91,3 +91,23 @@ class NoteDetailView(LoginRequiredMixin, generic.DetailView):
     model = Note
     template_name = 'my_notes/notedetail.html'
     context_object_name = 'note'
+
+
+class CategoryListView(LoginRequiredMixin, generic.ListView):
+    model = Note
+    paginate_by = 10
+    template_name = 'my_notes/categorylist.html'
+    context_object_name = 'categories'
+
+    def get_queryset(self):
+        queryset = super().get_queryset()
+        queryset = queryset.filter(user=get_user(self.request))
+
+        if self.request.GET.get('search'):
+            search = self.request.GET.get('search')
+            queryset = queryset.filter(
+                Q(title__icontains=search) |
+                Q(note_content__icontains=search)|
+                Q(note_category__icontains=search)
+            )   
+        return queryset
